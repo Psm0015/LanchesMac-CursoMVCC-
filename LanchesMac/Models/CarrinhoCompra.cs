@@ -17,17 +17,13 @@ namespace LanchesMac.Models
 
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
         {
-            //define uma sessão
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
-            //obtem um serviço do tipo do nosso contexto
             var context = services.GetService<AppDbContext>();
 
-            //obtem ou gera o Id do carrinho
             string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
 
-            //atribui o id do carrinho na Sessão
             session.SetString("CarrinhoId", carrinhoId);
 
             return new CarrinhoCompra(context)
