@@ -1,6 +1,30 @@
 ﻿@model Lanche
 
-<div class="col-sm-4 col-md-4 col-lg-4">
+<div class="card bg-white text-dark m-2 border-secondary" style="width: 18rem;">
+    <img src="@Model.ImagemUrl" class="card-img-top" alt="...">
+    <div class="card-body d-flex flex-column justify-content-between" style="height: calc(100% - 180px);">
+        <!-- Ajuste a altura conforme necessário -->
+        <div>
+            
+        </div>
+        <div>
+            <a asp-controller="Lanche" asp-action="Details" asp-route-lancheId="@Model.LancheId" class="card-title poppins-regular" style="text-decoration: none;">
+                <h5>@Model.Nome</h5>
+            </a>
+            <div>
+                <h3 class="poppins-regular text-success">@Model.Preco.ToString("c")</h3>
+            </div>
+            <p class="card-text">@Model.DescricaoCurta</p>
+            <a class="btn btn-outline-success poppins-regular" id="cartButton" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-lancheId="@Model.LancheId">
+                Adicionar no Carrinho <i class="fa-solid fa-cart-plus"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+@* <div class="col-sm-4 col-md-4 col-lg-4 bg-light">
 
     <p><img src="@Model.ImagemUrl" class="img-fluid"></p>
     <h3>Preço : @Model.Preco.ToString("c")</h3>
@@ -19,4 +43,4 @@
         </p>
     </div>
 
-</div>
+</div> *@

@@ -1,9 +1,8 @@
 ﻿@model CarrinhoCompraViewModel
 
-<div class="container">
-    <div class="row">
+<div class="container mt-5">
+    @* <div class="row">
 
-        @* <img src="~/images/Full-Cart-icon.png"/> *@
         <div>
             <h4>
                 Seu carrinho de Compras :
@@ -60,5 +59,52 @@
 
 
 
+    </div> *@
+    <h3 class="poppins-semibold text-center">Seu carrinho de Compras</h3>
+    <table class="table mt-4 poppins-regular">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    Quantidade
+                </th>
+                <th>
+                    Item
+                </th>
+                <th class="text-end">Preço</th>
+                <th class="text-end">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItems)
+            {
+                <tr>
+                    <td class="text-center">@item.Quantidade</td>
+                    <td class="text-left">@item.Lanche.Nome</td>
+                    <td class="text-end">@item.Lanche.Preco.ToString("c")</td>
+                    <td class="text-end">@((item.Quantidade * item.Lanche.Preco).ToString("c"))</td>
+                    <td class="text-center">
+                        <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinhoCompra" asp-route-lancheId="@item.Lanche.LancheId"><i class="fa-solid fa-trash text-danger"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end poppins-bold">
+                    Total:
+                </td>
+                <td class="text-end poppins-bold">
+                    @Model.CarrinhoCompraTotal.ToString("c")
+                </td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="text-right">
+        <div class="btn-group">
+            <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Finalizar Pedido</a>
+            <a class="btn btn-outline-success" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
+        </div>
     </div>
 </div>

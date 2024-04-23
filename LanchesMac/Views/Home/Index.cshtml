@@ -1,13 +1,13 @@
 ﻿@model HomeViewModel
 
-<partial name="_Carousel" />
-
-<h2>Os preferidos da semana</h2>
-<h4>Tá com fome ???</h4>
-
-<div class="row">
-    @foreach(var lanche in Model.LanchesPreferidos)
-    {
-        <partial name="_LanchesResumo" for="@lanche" />
-    }
+<partial name="_BannerPrincipal" />
+<div class="container mt-5">
+    <h2 class="poppins-medium text-center">Tá com fome?</h2>
+    <h4 class="poppins-light-italic text-center">Confira os preferidos da Semana</h4>
+        <div class="row mt-4 d-flex justify-content-between">
+            @foreach (var lanche in Model.LanchesPreferidos)
+            {
+                <partial name="_LanchesResumo" for="@lanche" />
+            }
+        </div>
 </div>
