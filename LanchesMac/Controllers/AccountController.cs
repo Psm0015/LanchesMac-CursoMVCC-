@@ -1,6 +1,7 @@
 ﻿using LanchesMac.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace LanchesMac.Controllers
 {
@@ -44,5 +45,50 @@ namespace LanchesMac.Controllers
             ModelState.AddModelError("", "Usuário ou Senha Inválidos!");
             return View(loginVM);
         }
+
+        public IActionResult Register()
+        {
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel registroVM)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!(string.Equals(registroVM.Password, registroVM.Password2)))
+                {
+                    this.ModelState.AddModelError("Registro", "Falha ao realizar o registro");
+                }
+                else
+                {
+                    var user = new IdentityUser { UserName = registroVM.UserName };
+                    var result = await _userManager.CreateAsync(user, registroVM.Password);
+
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                    else
+                    {
+                        this.ModelState.AddModelError("Registro", "Falha ao realizar o registro");
+                    }
+                }
+                
+            }
+            return View(registroVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Clear();
+            HttpContext.User = null;
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index","Home");
+        }
+
+
     }
 }

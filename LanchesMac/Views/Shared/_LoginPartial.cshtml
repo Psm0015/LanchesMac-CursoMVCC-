@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <style>
+        .icon-logout.hover-icon {
+            display: none;
+        }
+
+        .nav-link.btn:hover .fa-door-closed {
+            display: none;
+        }
+
+        .nav-link.btn:hover .fa-door-open {
+            display: inline;
+        }
+    </style>
+    <form asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="navbar-left">
+        <ul class="nav navbar-nav navbar-left">
+            <button type="submit" style="width:auto" class="nav-link btn btn-link py-0 text-light">
+                <i class="fa-solid fa-door-closed icon-logout"></i>
+                <i class="fa-solid fa-door-open icon-logout hover-icon"></i>&nbsp;Sair
+            </button>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-left">
+        <a class="nav-link text-light" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" style="color:white"><i class="fa-solid fa-right-to-bracket"></i>&nbsp; Entrar</a>
+    </ul>
+}

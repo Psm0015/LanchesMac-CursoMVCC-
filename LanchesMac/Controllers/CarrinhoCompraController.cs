@@ -1,10 +1,12 @@
 ﻿using LanchesMac.Models;
 using LanchesMac.Repositories.Interfaces;
 using LanchesMac.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LanchesMac.Controllers
 {
+    [Authorize]
     public class CarrinhoCompraController : Controller
     {
         private readonly ILancheRepository _lancheRepository;

@@ -24,29 +24,18 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-light mx-2" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="navbar-brand" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light mx-2" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a>
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminLanches" asp-action="Index">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            @await Component.InvokeAsync("CategoriaMenu")
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminCategorias" asp-action="Index">Categorias</a>
                         </li>
                         <li class="nav-item">
-                            <form class="navbar-form navbar-right mx-2" asp-controller="Lanche" asp-action="Search" method="get">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Procurar produto" name="searchString" value="@ViewData["searchString"]">
-                                </div>
-                            </form>
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminPedidos" asp-action="Index">Pedidos</a>
                         </li>
                     </ul>
-                    
-                    <span class="navbar-text">
-                        @await Component.InvokeAsync("CarrinhoCompraResumo")
-                    </span>
-                    <span class="navbar-text">
-                        <partial name="_LoginPartial.cshtml" />
-                    </span>
                 </div>
             </div>
         </nav>

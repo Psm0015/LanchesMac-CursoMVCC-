@@ -1,12 +1,11 @@
-﻿@model LoginViewModel
+﻿@model RegisterViewModel
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h4 class="poppins-bold text-center mt-3">LOGIN</h4>
             <hr />
-            <form asp-controller="Account" asp-action="Login" method="post" role="form">
+            <form asp-controller="Account" asp-action="Register" method="post" role="form">
                 <div asp-validation-summary="All" class="text-danger"></div>
-                <input type="hidden" asp-for="ReturnUrl" />
 
                 <div class="mb-3">
                     <label asp-for="UserName" class="form-label"></label>
@@ -20,14 +19,18 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
 
+                <div class="mb-3">
+                    <label asp-for="Password2" class="form-label"></label>
+                    <input asp-for="Password2" type="password" class="form-control" placeholder="Sua Senha">
+                    <span asp-validation-for="Password2" class="text-danger"></span>
+                </div>
+
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-outline-success">Log in</button>
+                    <button type="submit" class="btn btn-outline-success">Registrar</button>
                 </div>
             </form>
-            <a asp-controller="Account" asp-action="Register">Não tem Conta? Registre-se agora</a>
         </div>
     </div>
 </div>
 
 
- 
