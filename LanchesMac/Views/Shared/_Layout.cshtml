@@ -39,6 +39,12 @@
                                 </div>
                             </form>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-2" asp-area="Admin" asp-controller="Admin" asp-action="Index">Administração</a>
+                            </li>
+                        }
                     </ul>
                     
                     <span class="navbar-text">
