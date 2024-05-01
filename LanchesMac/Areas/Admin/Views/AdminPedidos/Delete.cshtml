@@ -1,12 +1,12 @@
 ﻿@model LanchesMac.Models.Pedido
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Apagar Pedido";
 }
 
-<h1>Delete</h1>
+<h1 class="poppins-semibold">Apagar</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="poppins-black-italic text-danger">Você tem certeza disso?</h3>
 <div>
     <h4>Pedido</h4>
     <hr />
@@ -81,7 +81,6 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="PedidoId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Apagar" class="btn btn-danger" /> <a class="btn btn-secondary" asp-action="Index">Voltar <i class="fa-solid fa-rotate-left"></i></a>
     </form>
 </div>

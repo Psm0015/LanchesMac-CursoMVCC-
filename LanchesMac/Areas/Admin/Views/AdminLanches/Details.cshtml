@@ -1,13 +1,13 @@
 ﻿@model LanchesMac.Models.Lanche
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Produto";
 }
 
-<h1>Details</h1>
+<h1>Detalhes do Produto</h1>
 
 <div>
-    <h4>Lanche</h4>
+    <h4>Produto</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -67,6 +67,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.LancheId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model?.LancheId">Editar</a>
+    <a class="btn btn-secondary" asp-action="Index">Voltar <i class="fa-solid fa-rotate-left"></i></a>
 </div>
