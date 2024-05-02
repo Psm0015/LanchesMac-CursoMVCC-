@@ -1,4 +1,6 @@
-﻿@model IEnumerable<LanchesMac.Models.Pedido>
+﻿@* @model IEnumerable<LanchesMac.Models.Pedido> *@
+
+@model ReflectionIT.Mvc.Paging.PagingList<LanchesMac.Models.Pedido>
 
 @{
     ViewData["Title"] = "Gerenciar Pedidos";
@@ -6,6 +8,14 @@
 
 <h1 class="poppins-regular">Gerenciar Pedidos</h1>
 
+<form method="get" class="form-inline d-flex">
+    <div class="input-group mb-3">
+        <input name="filter" type="text" class="form-control" placeholder="filtro" aria-label="Recipient's username" aria-describedby="button-addon2" value="@Model.RouteValue["Filter"]">
+        <button class="btn btn-outline-info" type="submit" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i> Procurar</button>
+    </div>
+</form>
+
+Total de Pedidos: @Model.TotalRecordCount
 <table class="table">
     <thead class="table-dark">
         <tr>
@@ -80,3 +90,6 @@
 }
     </tbody>
 </table>
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
