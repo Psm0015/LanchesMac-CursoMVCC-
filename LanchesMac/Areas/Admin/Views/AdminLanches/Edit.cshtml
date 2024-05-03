@@ -42,26 +42,42 @@
                     <span asp-validation-for="CategoriaID" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ImagemUrl" class="control-label"></label>
-                <input asp-for="ImagemUrl" class="form-control" />
-                <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+            
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="ImagemUrl" class="control-label"></label>
+                    <input asp-for="ImagemUrl" class="form-control" />
+                    <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <img width="200px" height="200px" src="@Model.ImagemUrl" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ImagemThumbnailUrl" class="control-label"></label>
-                <input asp-for="ImagemThumbnailUrl" class="form-control" />
-                <span asp-validation-for="ImagemThumbnailUrl" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="ImagemThumbnailUrl" class="control-label"></label>
+                    <input asp-for="ImagemThumbnailUrl" class="form-control" />
+                    <span asp-validation-for="ImagemThumbnailUrl" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <img width="200px" height="200px" src="@Model.ImagemThumbnailUrl" />
+                </div>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsLanchePreferido" /> @Html.DisplayNameFor(model => model.IsLanchePreferido)
-                </label>
+            <div class="d-flex">
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsLanchePreferido" /> @Html.DisplayNameFor(model => model.IsLanchePreferido)
+                    </label>
+                </div>
+                &nbsp;
+                &nbsp;
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="EmEstoque" /> @Html.DisplayNameFor(model => model.EmEstoque)
+                    </label>
+                </div>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="EmEstoque" /> @Html.DisplayNameFor(model => model.EmEstoque)
-                </label>
-            </div>
+            
             <div class="form-group mt-2">
                 <input type="submit" value="Salvar" class="btn btn-success" />
                 <a class="btn btn-secondary" asp-action="Index">Voltar <i class="fa-solid fa-rotate-left"></i></a>

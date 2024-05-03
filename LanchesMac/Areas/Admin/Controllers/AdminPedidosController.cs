@@ -9,6 +9,7 @@ using LanchesMac.Context;
 using LanchesMac.Models;
 using Microsoft.AspNetCore.Authorization;
 using ReflectionIT.Mvc.Paging;
+using LanchesMac.ViewModels;
 
 namespace LanchesMac.Areas.Admin.Controllers
 {
@@ -67,22 +68,6 @@ namespace LanchesMac.Areas.Admin.Controllers
         public IActionResult Create()
         {
             return View();
-        }
-
-        // POST: Admin/AdminPedidos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PedidoId,Nome,Sobrenome,Endereco1,Endereco2,Cep,Estado,Cidade,Telefone,Email,PedidoEnviado,PedidoEntregueEm")] Pedido pedido)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(pedido);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(pedido);
         }
 
         // GET: Admin/AdminPedidos/Edit/5
@@ -172,6 +157,27 @@ namespace LanchesMac.Areas.Admin.Controllers
         private bool PedidoExists(int id)
         {
             return _context.Pedidos.Any(e => e.PedidoId == id);
+        }
+
+        public IActionResult PedidosLanches(int? id)
+        {
+            var pedido = _context.Pedidos.Include(pd => pd.PedidoItens)
+                                            .ThenInclude(l => l.Lanche)
+                                            .FirstOrDefault(p => p.PedidoId == id);
+
+            if(pedido == null)
+            {
+                Response.StatusCode = 404;
+                return View("PedidoNotFound", id.Value);
+            }
+
+            PedidoLancheViewModel pedidoLanches = new PedidoLancheViewModel()
+            {
+                Pedido = pedido,
+                PedidoDetalhes = pedido.PedidoItens
+            };
+
+            return View(pedidoLanches);
         }
     }
 }

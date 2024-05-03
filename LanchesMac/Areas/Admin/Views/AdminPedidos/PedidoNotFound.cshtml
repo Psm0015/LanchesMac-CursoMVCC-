@@ -1,0 +1,17 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "404 Pedido Não Encontrado";
+}
+
+<div class="alert alert-danger mt-1 mb-1">
+    <h1 class="poppins-bold">
+        Error 404 - Not Found
+    </h1>
+    <hr />
+    <h2 class="poppins-semibold-italic">
+        Pedido com o id = @Model não foi encotrado
+    </h2>
+</div>
+
+<a class="btn btn-secondary" asp-action="Index">Voltar <i class="fa-solid fa-rotate-left"></i></a>

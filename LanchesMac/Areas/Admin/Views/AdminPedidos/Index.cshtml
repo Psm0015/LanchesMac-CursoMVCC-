@@ -46,7 +46,7 @@ Total de Pedidos: @Model.TotalRecordCount
             <th class="poppins-semibold">
                 @Html.DisplayNameFor(model => model.PedidoEntregueEm)
             </th>
-            <th class="text-end"><a class="btn btn-success poppins-medium" asp-action="Create">Novo Pedido <i class="fa-solid fa-square-plus"></i></a>&nbsp;</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -83,7 +83,8 @@ Total de Pedidos: @Model.TotalRecordCount
                     <div class="btn-group">
                         <a class="text-info" asp-action="Edit" asp-route-id="@item.PedidoId"><i class="fa-solid fa-pen-to-square"></i></a> &nbsp; &nbsp;
                         <a class="text-info" asp-action="Details" asp-route-id="@item.PedidoId"><i class="fa-solid fa-list"></i></a> &nbsp; &nbsp;
-                        <a class="text-danger" asp-action="Delete" asp-route-id="@item.PedidoId"><i class="fa-solid fa-trash"></i></a> &nbsp;
+                        <a class="text-danger" asp-action="Delete" asp-route-id="@item.PedidoId"><i class="fa-solid fa-trash"></i></a> &nbsp; &nbsp;
+                        <a class="text-info" asp-action="PedidosLanches" asp-route-id="@item.PedidoId"><i class="fa-solid fa-basket-shopping"></i></a> &nbsp;
                     </div>
                 </td>
         </tr>

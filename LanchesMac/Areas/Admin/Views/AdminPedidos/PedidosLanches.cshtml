@@ -1,0 +1,71 @@
+﻿@model LanchesMac.ViewModels.PedidoLancheViewModel
+
+@{
+    ViewData["Title"] = "PedidoLanches";
+    decimal totalPedido = 0;
+}
+
+<h1 class="poppins-semibold">
+    Pedido
+</h1>
+<hr />
+<div class="d-flex">
+    <h3 class="poppins-semibold">Pedido : &nbsp;</h3>
+    <h3 class="poppins"> @Html.DisplayFor(model => Model.Pedido.PedidoId)</h3>
+</div><div class="d-flex">
+    <h3 class="poppins-semibold">Nome : &nbsp;</h3>
+    <h3 class="poppins"> @Html.DisplayFor(model => Model.Pedido.Nome)</h3>
+</div><div class="d-flex">
+    <h3 class="poppins-semibold">Pedido Enviado : &nbsp;</h3>
+    <h3 class="poppins"> @Html.DisplayFor(model => Model.Pedido.PedidoEnviado)</h3>
+</div><div class="d-flex">
+    <h3 class="poppins-semibold">Pedido : &nbsp;</h3>
+    <h3 class="poppins">@Html.DisplayFor(model => Model.Pedido.PedidoId)</h3>
+</div>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th class="poppins-semibold">
+                Nome
+            </th>
+            <th class="poppins-semibold">
+                Imagem
+            </th>
+            <th class="poppins-semibold">
+                Preço
+            </th>
+            <th class="poppins-semibold">
+                Quantidade
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Pedido.PedidoItens)
+        {
+            totalPedido += (item.Lanche.Preco * item.Quantidade);
+            <tr>
+                <td class="poppins-regular">
+                    @Html.DisplayFor(modelItem => item.Lanche.Nome)
+                </td>
+                <td class="poppins-regular">
+                    <img src="@item.Lanche.ImagemUrl" class="img-fluid" height="100" width="100" />
+                </td>
+                <td class="poppins-regular">
+                    @string.Format("{0:C}",item.Lanche.Preco)
+                </td>
+                <td class="poppins-regular">
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td class="poppins-semibold">
+                Total do Pedido: @string.Format("{0:C}", totalPedido)
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<a class="btn btn-secondary" asp-action="Index">Voltar <i class="fa-solid fa-rotate-left"></i></a>

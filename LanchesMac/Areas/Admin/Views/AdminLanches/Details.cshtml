@@ -4,7 +4,7 @@
     ViewData["Title"] = "Detalhes do Produto";
 }
 
-<h1>Detalhes do Produto</h1>
+<h1 class="poppins-regular">Detalhes do Produto</h1>
 
 <div>
     <h4>Produto</h4>
@@ -38,13 +38,13 @@
             @Html.DisplayNameFor(model => model.ImagemUrl)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImagemUrl)
+            <img src="@Html.DisplayFor(model => model.ImagemUrl)" alt="Alternate Text" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ImagemThumbnailUrl)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImagemThumbnailUrl)
+            <img src="@Html.DisplayFor(model => model.ImagemThumbnailUrl)" alt="Alternate Text" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IsLanchePreferido)
