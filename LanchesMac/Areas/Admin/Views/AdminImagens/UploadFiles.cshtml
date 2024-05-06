@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Enviar Imagens";
+}
+
+@if(ViewData["Erro"] != null){
+    <div class="alert alert-danger" role="alert">
+        @ViewData["Erro"]
+    </div>
+}
+
+<div class="container">
+    @if (ViewData["Resultado"] != null){
+        <div class="alert alert-success" role="alert">
+            <p class="poppins-semibold">@ViewData["Resultado"]</p>
+            <hr />
+            @if (ViewBag.Arquivos != null)
+            {
+                @foreach (string arquivo in ViewBag.Arquivos)
+                {
+                    <li class="poppins-regular">
+                        @arquivo
+                    </li>
+                }
+            }
+        </div>
+        
+    }
+</div>

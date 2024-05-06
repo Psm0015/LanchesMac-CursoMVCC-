@@ -1,3 +1,4 @@
+using LanchesMac.Areas.Admin.Services;
 using LanchesMac.Context;
 using LanchesMac.Models;
 using LanchesMac.Repositories;
@@ -24,6 +25,9 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 });
+builder.Services.Configure<ConfigurationImagens>(
+    builder.Configuration.GetSection("ConfigurationPastaImagens")
+);
 builder.Services.AddPaging(options => {
     options.ViewName = "Bootstrap5";
     options.PageParameterName = "pageindex";
@@ -34,6 +38,7 @@ builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
 builder.Services.AddTransient<ISeedUserRoleInitial, SeedUserRoleInitial>();
 builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
+builder.Services.AddScoped<RelatorioVendasService>();
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", politica =>
