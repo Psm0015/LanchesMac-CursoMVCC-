@@ -46,7 +46,7 @@ namespace LanchesMac.Areas.Admin.Controllers
 
             foreach (var formfile in files)
             {
-                if(formfile.FileName.Contains(".jpg") || formfile.FileName.Contains(".png") || formfile.FileName.Contains(".gif"))
+                if(formfile.FileName.Contains(".jpeg") || formfile.FileName.Contains(".jpg") || formfile.FileName.Contains(".png") || formfile.FileName.Contains(".gif"))
                 {
                     var fileNameWithPath = string.Concat(filePath, "\\", formfile.FileName);
                     filePathsName.Add(fileNameWithPath);
@@ -82,6 +82,21 @@ namespace LanchesMac.Areas.Admin.Controllers
             }
             model.files = files;
             return View(model);
+        }
+
+        public IActionResult DeleteFile(string fname)
+        {
+            string _imagemDeleta = Path.Combine(_hostingEnvironment.WebRootPath, _myConfig.NomePastaImagensProdutos + "\\", fname);
+
+            if ((System.IO.File.Exists(_imagemDeleta)))
+            {
+                System.IO.File.Delete(_imagemDeleta);
+
+                ViewData["Deletado"] = $"Arquivo(s) {_imagemDeleta} deletado com sucesso";
+
+            }
+            return View("index");
+
         }
     }
 }

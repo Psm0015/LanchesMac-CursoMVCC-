@@ -1,7 +1,12 @@
 ﻿@{
     ViewData["Title"] = "GerenciarImagens";
 }
-
+@if (ViewData["Deletado"] != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewData["Deletado"]
+    </div>
+}
 <div class ="row">
     <div class="col">
         <form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="UploadFiles">
@@ -29,10 +34,4 @@
             </div>
         </form>
     </div>
-</div>
-<div class="row">
-    @if(ViewData["Deletado"] != null)
-    {
-        <p>@ViewData["Deletado"]</p>
-    }
 </div>
